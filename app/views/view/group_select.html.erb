@@ -1,0 +1,4 @@
+<%= form_for(@review) do |f| %>
+  <%= f.label :book_id %><br />
+  <%= f.grouped_collection_select(:book_id, @authors, :books, :name, :id, :title) %>
+<% end %>
