@@ -15,7 +15,11 @@
 <% @fun_comments.each do |fun_comment| %>
   <tr>
     <td><%= fun_comment.author_no %></td>
-    <td><%= fun_comment.author.name %></td>
+    <td><% if fun_comment.author != nil %>
+	    	<%= fun_comment.author.name %>
+	    <% else %>
+	    	【該当なし】
+    	<% end %></td>
     <td><%= fun_comment.name %></td>
     <td><%= fun_comment.body %></td>
     <td><%= fun_comment.deleted %></td>

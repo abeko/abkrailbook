@@ -12,9 +12,10 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :author_no %><br />
-    <%= f.text_field :author_no %>
+    Author name<br />
+    <%= f.collection_select( :author_no, @authors, :id, :name) %>
   </div>
+  
   <div class="field">
     <%= f.label :name %><br />
     <%= f.text_field :name %>

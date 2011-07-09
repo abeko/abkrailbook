@@ -67,4 +67,5 @@ Railbook::Application.routes.draw do
   # match ':controller(/:action(/:id(.:format)))'
   
   match ':controller(/:action(/:id(.:format)))'
+  root :to => 'books#index'
 end

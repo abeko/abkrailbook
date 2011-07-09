@@ -25,6 +25,7 @@ class FunCommentsController < ApplicationController
   # GET /fun_comments/new.xml
   def new
     @fun_comment = FunComment.new
+    collection_select_author_no
 
     respond_to do |format|
       format.html # new.html.erb
@@ -84,6 +85,13 @@ class FunCommentsController < ApplicationController
   def specific_author_new
     @fun_comment = FunComment.new
     @fun_comment.author_no =  params[:id]
+    collection_select_author_no
     render 'new'
   end
+  
+  private
+  def collection_select_author_no
+    @authors = Author.all
+  end
+  
 end
