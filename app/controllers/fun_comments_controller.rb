@@ -36,6 +36,7 @@ class FunCommentsController < ApplicationController
   # GET /fun_comments/1/edit
   def edit
     @fun_comment = FunComment.find(params[:id])
+    collection_select_author_no
   end
 
   # POST /fun_comments
