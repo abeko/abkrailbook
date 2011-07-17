@@ -1,4 +1,6 @@
 class FunCommentsController < ApplicationController
+  before_filter :collection_select_author_no, :only => 'create'
+  
   # GET /fun_comments
   # GET /fun_comments.xml
   def index
