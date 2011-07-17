@@ -1,0 +1,14 @@
+<%= link_to_unless_current('Books', books_path) %> | 
+<%= link_to_unless_current('Reviews', reviews_path) %> | 
+<%= link_to_unless_current('Authors', authors_path) %> | 
+<%= link_to_unless_current('Users', users_path) %> | 
+<%= link_to_unless_current('Fun_comments', fun_comments_path) %>
+
+<div align="right">
+	<% if session[:usr] %>
+		<%= @usr.username %>
+	<% else %>
+		<%= link_to('ログイン', { :controller => 'login', :action => 'index' }) %>
+	<% end %>
+		<%= link_to('ログアウト', { :controller => 'login', :action => 'logout' }) %>
+</div>
