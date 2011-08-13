@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110619140752) do
+ActiveRecord::Schema.define(:version => 20110724141137) do
 
   create_table "authors", :force => true do |t|
     t.integer  "user_id"
@@ -35,6 +35,13 @@ ActiveRecord::Schema.define(:version => 20110619140752) do
     t.string   "publish"
     t.date     "published"
     t.boolean  "cd"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "favorites", :force => true do |t|
+    t.integer  "book_id"
+    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

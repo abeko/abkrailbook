@@ -1,4 +1,7 @@
 Railbook::Application.routes.draw do
+
+  resources :favorites
+
   resources :fun_comments
 
   resources :reviews
