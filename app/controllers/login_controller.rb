@@ -21,6 +21,7 @@ class LoginController < ApplicationController
   
   def logout
     reset_session
-    redirect_to request.headers['Referer']
+    # redirect_to request.headers['Referer']
+    redirect_to books_path
   end
 end

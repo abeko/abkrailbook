@@ -1,5 +1,19 @@
 <p id="notice"><%= notice %></p>
 
+<% if session[:usr] %>
+	<% unless @favorite %>
+		<%= form_tag({:controller => 'favorites', :action => 'create'}) do %>
+		  <%= hidden_field_tag :book_id, @book.id %>
+		  <%= hidden_field_tag :user_id, @usr.id %>
+		  <%= submit_tag 'お気に入りに登録', :disable_with => '処理中...' %>
+		<% end %>
+	<% else %>
+		<%= form_tag(favorite_path(@favorite), :method => :delete) do %>
+		  <%= submit_tag 'お気に入りから削除', :disable_with => '処理中...' %>
+		<% end %>
+	<% end %>
+<% end %>
+
 <p>
   <b>Isbn:</b>
   <%= @book.isbn %>

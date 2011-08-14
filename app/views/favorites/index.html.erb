@@ -1,25 +1,29 @@
-<h1>Listing favorites</h1>
+<h1>Listing <%= @usr.username %>'s favorites</h1>
+
+<p id="notice"><%= notice %></p>
 
 <table>
   <tr>
+  	<th>Id</th>
     <th>Book</th>
     <th>User</th>
-    <th></th>
+    <th>Created</th>
     <th></th>
     <th></th>
   </tr>
 
 <% @favorites.each do |favorite| %>
   <tr>
-    <td><%= favorite.book %></td>
-    <td><%= favorite.user %></td>
-    <td><%= link_to 'Show', favorite %></td>
-    <td><%= link_to 'Edit', edit_favorite_path(favorite) %></td>
+  	<td><%= favorite.id %></td>
+    <td><%= favorite.book.title %></td>
+    <td><%= favorite.user.username %></td>
+    <td><%= favorite.created_at %></td>
+<!--     <td><%= link_to 'Show', favorite %></td> -->
+    <td><%= link_to 'Show', book_path(favorite.book) %>
     <td><%= link_to 'Destroy', favorite, :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
 <% end %>
 </table>
 
 <br />
-
-<%= link_to 'New Favorite', new_favorite_path %>
+<%= link_to '戻る', url_for(:back) %>

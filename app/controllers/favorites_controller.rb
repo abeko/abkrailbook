@@ -2,7 +2,8 @@ class FavoritesController < ApplicationController
   # GET /favorites
   # GET /favorites.xml
   def index
-    @favorites = Favorite.all
+    # @favorites = Favorite.all
+    @favorites = Favorite.where(:user_id => @usr.id)      
 
     respond_to do |format|
       format.html # index.html.erb
@@ -40,11 +41,14 @@ class FavoritesController < ApplicationController
   # POST /favorites
   # POST /favorites.xml
   def create
-    @favorite = Favorite.new(params[:favorite])
+    # @favorite = Favorite.new(params[:favorite])
+    @favorite = Favorite.new
+    @favorite.book_id = params[:book_id]
+    @favorite.user_id = params[:user_id]
 
     respond_to do |format|
       if @favorite.save
-        format.html { redirect_to(@favorite, :notice => 'Favorite was successfully created.') }
+        format.html { redirect_to(favorites_path, :notice => 'Favorite was successfully created.') }
         format.xml  { render :xml => @favorite, :status => :created, :location => @favorite }
       else
         format.html { render :action => "new" }

@@ -10,9 +10,9 @@
 		<td align="right">
 			<% if session[:usr] %>
 				<%= @usr.username %>
+				<%= link_to_unless_current('お気に入り', favorites_path) %>
 				<%= link_to('ログアウト', { :controller => 'login', :action => 'logout' }) %>
 			<% else %>
-				<!-- <%= link_to('ログイン', { :controller => 'login', :action => 'index' }) %> -->
 				<%= link_to_unless_current('ログイン', { :controller => 'login', :action => 'index' }) %>
 			<% end %>
 		</td>

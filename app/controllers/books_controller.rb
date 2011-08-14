@@ -1,3 +1,5 @@
+# coding: utf-8
+
 class BooksController < ApplicationController
   # GET /books
   # GET /books.xml
@@ -14,7 +16,11 @@ class BooksController < ApplicationController
   # GET /books/1.xml
   def show
     @book = Book.find(params[:id])
-
+    if session[:usr]
+      # @favorite = Favorite.where('book_id = ? AND user_id = ?', @book, session[:usr])
+      @favorite = Favorite.find_by_book_id_and_user_id(@book, session[:usr])
+    end
+    
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @book }

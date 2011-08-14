@@ -2,6 +2,7 @@
 
 <table>
   <tr>
+  	<th>Id</th>
     <th>Isbn</th>
     <th>Title</th>
     <th>Price</th>
@@ -15,6 +16,7 @@
 
 <% @books.each do |book| %>
   <tr>
+  	<td><%= book.id %></td>
     <td><%= book.isbn %></td>
     <td><%= book.title %></td>
     <td><%= book.price %></td>
