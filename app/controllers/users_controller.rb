@@ -35,18 +35,23 @@ class UsersController < ApplicationController
   # GET /users/1/edit
   def edit
     @user = User.find(params[:id])
+    @user.password = ''
   end
 
   # POST /users
   # POST /users.xml
   def create
     @user = User.new(params[:user])
-
+    if @user.password != ''
+      @user.password = Digest::SHA1.hexdigest(params[:user][:password])
+    end
+  
     respond_to do |format|
       if @user.save
         format.html { redirect_to(@user, :notice => 'User was successfully created.') }
         format.xml  { render :xml => @user, :status => :created, :location => @user }
       else
+        @user.password = ''
         format.html { render :action => "new" }
         format.xml  { render :xml => @user.errors, :status => :unprocessable_entity }
       end
@@ -57,12 +62,16 @@ class UsersController < ApplicationController
   # PUT /users/1.xml
   def update
     @user = User.find(params[:id])
-
+    if params[:user][:password] != ''
+      params[:user][:password] = Digest::SHA1.hexdigest(params[:user][:password])
+    end
+    
     respond_to do |format|
       if @user.update_attributes(params[:user])
         format.html { redirect_to(@user, :notice => 'User was successfully updated.') }
         format.xml  { head :ok }
       else
+        @user.password = ''
         format.html { render :action => "edit" }
         format.xml  { render :xml => @user.errors, :status => :unprocessable_entity }
       end
